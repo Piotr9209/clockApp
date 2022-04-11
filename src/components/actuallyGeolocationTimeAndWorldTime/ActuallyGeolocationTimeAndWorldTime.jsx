@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getWorldTimeApi } from "../../features/appClockSlice/apiClockSlice";
 import { getGeoIp } from "../../features/appClockSlice/apiClockSlice";
@@ -12,22 +12,65 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
   const { worldTime, successWorldTime } = useSelector(
     (state) => state.worldTime
   );
-  const { detailsInformationTimeAndHideQuote } = useSelector(
+  const detailsInformationTimeAndHideQuote = useSelector(
     (state) => state.toggleFlag.detailsInformationTimeAndHideQuote
   );
+  const [actuallyHoursInWorldTime, setActuallyHoursInWorldTime] = useState(
+    new Date().getHours()
+  );
+  const [
+    showAndHideDetailsInformationText,
+    setShowAndHideDetailsInformationText,
+  ] = useState("more");
+
   useEffect(() => {
     dispatch(getGeoIp());
     dispatch(getWorldTimeApi());
   }, [dispatch]);
 
+  useEffect(() => {
+    detailsInformationTimeAndHideQuote
+      ? setShowAndHideDetailsInformationText("less")
+      : setShowAndHideDetailsInformationText("more");
+  }, [detailsInformationTimeAndHideQuote]);
+
+  const showDetailsInformation = () => {
+    dispatch(toggleDetailsInformationTimeAndHideQuote());
+  };
+
+  const detailsInformationTime = (successWorldTime, worldTime) => {
+    if (successWorldTime) {
+      return (
+        <div className="wrapper-detailsInformationTime">
+          <div>
+            <p>current timezone</p>
+            <p>{worldTime.timezone}</p>
+            <p>day of the year</p>
+            <p>{worldTime.day_of_year}</p>
+          </div>
+          <div>
+            <p>day of the week</p>
+            <p>{worldTime.day_of_week}</p>
+            <p>week number</p>
+            <p>{worldTime.week_number}</p>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <span>Loaaading</span>
+        </div>
+      );
+    }
+  };
   return (
     <main className="time">
       <div className="wrapper-time">
         <div className="actuallyTime">
           <div>
-            {(successWorldTime &&
-              new Date().getHours(worldTime.datetime) >= 20) ||
-            new Date().getHours(worldTime.datetime) <= 5 ? (
+            {(successWorldTime && actuallyHoursInWorldTime >= 20) ||
+            actuallyHoursInWorldTime <= 5 ? (
               <span>
                 <img src="" alt="" />
                 good evening, it's currently
@@ -63,16 +106,16 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
         <div className="wrapper-button">
           <div>
             <button
-              onClick={() =>
-                dispatch(toggleDetailsInformationTimeAndHideQuote())
-              }
+              onClick={() => showDetailsInformation()}
               className="button-time"
             >
-              more
+              {showAndHideDetailsInformationText}
             </button>
           </div>
         </div>
       </div>
+      {detailsInformationTimeAndHideQuote &&
+        detailsInformationTime(successWorldTime, worldTime)}
     </main>
   );
 };
