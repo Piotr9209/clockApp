@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getQuotesApi } from "../../features/appClockSlice/apiClockSlice";
 import { useSelector, useDispatch } from "react-redux";
-
+import "./quote.scss";
 export const Quote = () => {
   const dispatch = useDispatch();
   const { quotes, success } = useSelector((state) => state.quotes);

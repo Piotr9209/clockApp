@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getWorldTimeApi } from "../../features/appClockSlice/apiClockSlice";
 import { getGeoIp } from "../../features/appClockSlice/apiClockSlice";
 import { toggleDetailsInformationTimeAndHideQuote } from "../../features/appClockSlice/flagClockSlice";
+import "./actuallyGeolocationTimeAndWorldTime.scss";
 
 export const ActuallyGeolocationTimeAndWorldTime = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
     showAndHideDetailsInformationText,
     setShowAndHideDetailsInformationText,
   ] = useState("more");
+  const [toggleDayAndNight, setToggleDayAndNight] = useState("");
 
   useEffect(() => {
     dispatch(getGeoIp());
@@ -37,6 +39,21 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
   const showDetailsInformation = () => {
     dispatch(toggleDetailsInformationTimeAndHideQuote());
   };
+
+  useEffect(() => {
+    if (
+      (successWorldTime && actuallyHoursInWorldTime >= 20) ||
+      actuallyHoursInWorldTime <= 5
+    ) {
+      setToggleDayAndNight("night");
+      document.body.classList.remove("day");
+      document.body.classList.add("night");
+    } else {
+      setToggleDayAndNight("day");
+      document.body.classList.remove("night");
+      document.body.classList.add("day");
+    }
+  }, [actuallyHoursInWorldTime, successWorldTime]);
 
   const detailsInformationTime = (successWorldTime, worldTime) => {
     if (successWorldTime) {
@@ -64,6 +81,7 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
       );
     }
   };
+
   return (
     <main className="time">
       <div className="wrapper-time">
