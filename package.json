@@ -40,6 +40,7 @@
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {
+    "react-icons": "^4.3.1",
     "sass": "^1.50.0"
   },
   "author": "",

@@ -1,15 +1,38 @@
+@import "../../style/colors.scss";
+@import "../../style/font.scss";
+
 .day {
-    background: url("../../../public/assets/mobile/bg-image-daytime.jpg") no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../../../public/assets/mobile/bg-image-daytime.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     @media screen and (min-width: 780px) {
-        background-image: url("../../../public/assets/tablet/bg-image-daytime.jpg");
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("../../../public/assets/tablet/bg-image-daytime.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 
     @media screen and (min-width: 1180px) {
-        background-image: url("../../../public/assets/desktop/bg-image-daytime.jpg");
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("../../../public/assets/desktop/bg-image-daytime.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
 
@@ -19,11 +42,197 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    opacity: 0.5;
     @media screen and (min-width: 780px) {
         background-image: url("../../../public/assets/tablet/bg-image-nighttime.jpg");
     }
 
     @media screen and (min-width: 1180px) {
         background-image: url("../../../public/assets/desktop/bg-image-nighttime.jpg");
+    }
+}
+
+.time {
+    margin-top: 300px;
+    margin-left: 5%;
+    height: auto;
+    @media screen and (min-width: 780px) {
+        margin-top: 400px;
+        margin-left: 7%;
+    }
+    @media screen and (min-width: 1180px) {
+        margin-top: 500px;
+        margin-left: 10%;
+    }
+    .wrapper-time {
+        @media screen and (min-width: 1180px) {
+            display: flex;
+            flex-direction: row;
+        }
+        .actually-time {
+            color: $white-color;
+            font-family: $inter-font;
+            text-transform: uppercase;
+            div {
+                &:nth-of-type(1) {
+                    margin-top: 10px;
+                    @media screen and (min-width: 780px) {
+                        margin-top: 15px;
+                    }
+                    @media screen and (min-width: 1180px) {
+                        margin-top: 20px;
+                    }
+                    span {
+                        font-size: 15px;
+                        font-weight: 400;
+                        line-height: 25px;
+                        letter-spacing: 3px;
+                        @media screen and (min-width: 780px) {
+                            font-size: 18px;
+                            line-height: 28px;
+                            letter-spacing: 3.6px;
+                        }
+                        @media screen and (min-width: 1180px) {
+                            font-size: 20px;
+                            letter-spacing: 4px;
+                        }
+                    }
+                }
+                &:nth-of-type(2) {
+                    margin-top: 10px;
+                    @media screen and (min-width: 780px) {
+                        margin-top: 15px;
+                    }
+                    @media screen and (min-width: 1180px) {
+                        margin-top: 20px;
+                    }
+                    p {
+                        font-size: 100px;
+                        font-weight: 700;
+                        line-height: 100px;
+                        letter-spacing: -2.5px;
+                        @media screen and (min-width: 780px) {
+                            font-size: 175px;
+                            line-height: 175px;
+                            letter-spacing: -4px;
+                        }
+                        @media screen and (min-width: 1180px) {
+                            font-size: 200px;
+                            line-height: 200px;
+                            letter-spacing: -5px;
+                        }
+                        span {
+                            font-weight: 300;
+                            font-size: 15px;
+                            line-height: 28px;
+                            letter-spacing: 1px;
+                            @media screen and (min-width: 780px) {
+                                font-size: 32px;
+                                line-height: 28px;
+                            }
+                            @media screen and (min-width: 1180px) {
+                                font-size: 40px;
+                            }
+                        }
+                    }
+                }
+                &:nth-of-type(3) {
+                    margin-top: 15px;
+                    @media screen and (min-width: 780px) {
+                        margin-top: 20px;
+                    }
+                    @media screen and (min-width: 1180px) {
+                        margin-top: 25px;
+                    }
+                    p {
+                        font-weight: 700;
+                        font-size: 15px;
+                        line-height: 28px;
+                        letter-spacing: 3px;
+                        @media screen and (min-width: 780px) {
+                            font-size: 18px;
+                            line-height: 28px;
+                            letter-spacing: 3.6px;
+                        }
+                        @media screen and (min-width: 1180px) {
+                            font-size: 24px;
+                            letter-spacing: 4.8px;
+                        }
+                    }
+                }
+            }
+        }
+        .wrapper-button {
+            margin-top: 20px;
+            @media screen and (min-width: 1180px) {
+                margin-top: 230px;
+                margin-left: 150px;
+            }
+            div {
+                button {
+                    background-color: $white-color;
+                    border: none;
+                    color: $dark-gray-color;
+                    padding: 10px;
+                    text-align: center;
+                    text-decoration: none;
+                    display: inline-block;
+                    font-size: 12px;
+                    border-radius: 25px;
+                    font-family: $inter-font;
+                    font-weight: 700;
+                    line-height: 14px;
+                    letter-spacing: 3.75px;
+                    @media screen and (min-width: 780px) {
+                        font-size: 16px;
+                        line-height: 28px;
+                        letter-spacing: 5px;
+                    }
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+.wrapper-detailsInformation {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(40.7742px);
+    margin-left: 0;
+    width: 100%;
+    z-index: 100;
+    div {
+        margin-top: 50px;
+        margin-left: 5%;
+        @media screen and (min-width: 780px) {
+            margin-top: 60px;
+            margin-left: 7%;
+        }
+        @media screen and (min-width: 1180px) {
+            margin-top: 70px;
+            margin-left: 10%;
+        }
+
+        .detailsInformation-categoryInfo {
+            font-style: $inter-font;
+            color: $black-color;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 28px;
+            letter-spacing: 2.6px;
+            margin-bottom: 5px;
+        }
+        .detailsInformation-nameInfo {
+            font-style: $inter-font;
+            color: $black-color;
+            font-size: 40px;
+            line-height: 48.41px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
     }
 }

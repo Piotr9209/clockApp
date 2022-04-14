@@ -1,6 +1,6 @@
 import { Quote } from "./components/quotes/Quote";
 import { ActuallyGeolocationTimeAndWorldTime } from "./components/actuallyGeolocationTimeAndWorldTime/ActuallyGeolocationTimeAndWorldTime.jsx";
-import "./reset.scss";
+import "./style/reset.scss";
 
 function App() {
   return (

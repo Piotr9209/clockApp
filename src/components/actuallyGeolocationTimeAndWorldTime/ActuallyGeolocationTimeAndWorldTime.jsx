@@ -23,7 +23,6 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
     showAndHideDetailsInformationText,
     setShowAndHideDetailsInformationText,
   ] = useState("more");
-  const [toggleDayAndNight, setToggleDayAndNight] = useState("");
 
   useEffect(() => {
     dispatch(getGeoIp());
@@ -45,11 +44,9 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
       (successWorldTime && actuallyHoursInWorldTime >= 20) ||
       actuallyHoursInWorldTime <= 5
     ) {
-      setToggleDayAndNight("night");
       document.body.classList.remove("day");
       document.body.classList.add("night");
     } else {
-      setToggleDayAndNight("day");
       document.body.classList.remove("night");
       document.body.classList.add("day");
     }
@@ -58,18 +55,30 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
   const detailsInformationTime = (successWorldTime, worldTime) => {
     if (successWorldTime) {
       return (
-        <div className="wrapper-detailsInformationTime">
+        <div
+          className={
+            detailsInformationTimeAndHideQuote
+              ? "wrapper-detailsInformation"
+              : ""
+          }
+        >
           <div>
-            <p>current timezone</p>
-            <p>{worldTime.timezone}</p>
-            <p>day of the year</p>
-            <p>{worldTime.day_of_year}</p>
+            <p className="detailsInformation-categoryInfo">current timezone</p>
+            <p className="detailsInformation-nameInfo">{worldTime.timezone}</p>
+            <p className="detailsInformation-categoryInfo">day of the year</p>
+            <p className="detailsInformation-nameInfo">
+              {worldTime.day_of_year}
+            </p>
           </div>
           <div>
-            <p>day of the week</p>
-            <p>{worldTime.day_of_week}</p>
-            <p>week number</p>
-            <p>{worldTime.week_number}</p>
+            <p className="detailsInformation-categoryInfo">day of the week</p>
+            <p className="detailsInformation-nameInfo">
+              {worldTime.day_of_week}
+            </p>
+            <p className="detailsInformation-categoryInfo">week number</p>
+            <p className="detailsInformation-nameInfo">
+              {worldTime.week_number}
+            </p>
           </div>
         </div>
       );
@@ -83,57 +92,63 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
   };
 
   return (
-    <main className="time">
-      <div className="wrapper-time">
-        <div className="actuallyTime">
-          <div>
-            {(successWorldTime && actuallyHoursInWorldTime >= 20) ||
-            actuallyHoursInWorldTime <= 5 ? (
-              <span>
-                <img src="" alt="" />
-                good evening, it's currently
-              </span>
-            ) : (
-              <span>
+    <>
+      <main className="time">
+        <div className="wrapper-time">
+          <div className="actually-time">
+            <div>
+              {(successWorldTime && actuallyHoursInWorldTime >= 20) ||
+              actuallyHoursInWorldTime <= 5 ? (
                 <span>
                   <img src="" alt="" />
-                  good morning, it's currently
+                  good evening, it's currently
                 </span>
-              </span>
-            )}
+              ) : (
+                <span>
+                  <span>
+                    <img src="" alt="" />
+                    good morning, it's currently
+                  </span>
+                </span>
+              )}
+            </div>
+            <div>
+              <p>
+                {successWorldTime &&
+                  (new Date().getHours(worldTime.datetime) < 10 ? "0" : "") +
+                    new Date().getHours(worldTime.datetime)}{" "}
+                :{" "}
+                {successWorldTime &&
+                  (new Date().getMinutes(worldTime.datetime) < 10 ? "0" : "") +
+                    new Date().getMinutes(worldTime.datetime)}{" "}
+                <span>{successWorldTime && worldTime.utc_offset}</span>
+              </p>
+            </div>
+            <div>
+              <p>
+                in {successGeoLocation && geoLocation.city},{" "}
+                {successGeoLocation && geoLocation.country_code}
+              </p>
+            </div>
           </div>
-          <div>
-            <span>
-              {successWorldTime &&
-                (new Date().getHours(worldTime.datetime) < 10 ? "0" : "") +
-                  new Date().getHours(worldTime.datetime)}{" "}
-              :{" "}
-              {successWorldTime &&
-                (new Date().getMinutes(worldTime.datetime) < 10 ? "0" : "") +
-                  new Date().getMinutes(worldTime.datetime)}{" "}
-              {successWorldTime && worldTime.utc_offset}
-            </span>
-          </div>
-          <div>
-            <span>
-              in {successGeoLocation && geoLocation.city},{" "}
-              {successGeoLocation && geoLocation.country_code}
-            </span>
+          <div className="wrapper-button">
+            <div>
+              <button
+                onClick={() => showDetailsInformation()}
+                className="button-time"
+              >
+                {showAndHideDetailsInformationText}{" "}
+                <img
+                  src={"/public/assets/desktop/icon-arrow-down.svg"}
+                  alt="arrow"
+                />
+              </button>
+            </div>
           </div>
         </div>
-        <div className="wrapper-button">
-          <div>
-            <button
-              onClick={() => showDetailsInformation()}
-              className="button-time"
-            >
-              {showAndHideDetailsInformationText}
-            </button>
-          </div>
-        </div>
-      </div>
+      </main>
       {detailsInformationTimeAndHideQuote &&
         detailsInformationTime(successWorldTime, worldTime)}
-    </main>
+    </>
   );
 };

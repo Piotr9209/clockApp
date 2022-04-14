@@ -1,0 +1,61 @@
+@import "../../style/colors.scss";
+@import "../../style/font.scss";
+
+.wrapper-quote {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-left: 5%;
+    margin-right: 10%;
+    height: auto;
+    @media screen and (min-width: 780px) {
+        margin-top: 40px;
+        margin-left: 7%;
+        margin-right: 15%;
+    }
+    @media screen and (min-width: 1180px) {
+        margin-top: 60px;
+        margin-left: 10%;
+        margin-right: 0;
+    }
+    div {
+        &:nth-of-type(1) {
+            width: 75%;
+            @media screen and (min-width: 1180px) {
+                width: 65%;
+            }
+        }
+        &:nth-of-type(2) {
+            width: 10%;
+            @media screen and (min-width: 1180px) {
+                width: 12%;
+            }
+            .button-refresh__quote {
+                //to write css, problem is with img icon refresh
+            }
+        }
+        p {
+            color: $white-color;
+            font-family: $inter-font;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 22px;
+            @media screen and (min-width: 780px) {
+                font-size: 22px;
+                line-height: 28px;
+            }
+            @media screen and (min-width: 1180px) {
+                font-size: 28px;
+                line-height: 32px;
+            }
+            &:nth-of-type(1) {
+                margin-right: 20px;
+                margin-bottom: 15px;
+            }
+            &:nth-of-type(2) {
+                font-weight: 700;
+            }
+        }
+    }
+}
