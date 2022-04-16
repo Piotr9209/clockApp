@@ -115,12 +115,16 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
             <div>
               <p>
                 {successWorldTime &&
-                  (new Date().getHours(worldTime.datetime) < 10 ? "0" : "") +
-                    new Date().getHours(worldTime.datetime)}{" "}
-                :{" "}
+                  String(new Date(worldTime.datetime).getHours()).padStart(
+                    2,
+                    "0"
+                  )}{" "}
+                :
                 {successWorldTime &&
-                  (new Date().getMinutes(worldTime.datetime) < 10 ? "0" : "") +
-                    new Date().getMinutes(worldTime.datetime)}{" "}
+                  String(new Date(worldTime.datetime).getMinutes()).padStart(
+                    2,
+                    "0"
+                  )}
                 <span>{successWorldTime && worldTime.utc_offset}</span>
               </p>
             </div>
@@ -138,10 +142,6 @@ export const ActuallyGeolocationTimeAndWorldTime = () => {
                 className="button-time"
               >
                 {showAndHideDetailsInformationText}{" "}
-                <img
-                  src={"/public/assets/desktop/icon-arrow-down.svg"}
-                  alt="arrow"
-                />
               </button>
             </div>
           </div>

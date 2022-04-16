@@ -37,31 +37,50 @@
 }
 
 .night {
-    background: url("../../../public/assets/mobile/bg-image-nighttime.jpg") no-repeat center center fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../../../public/assets/mobile/bg-image-nighttime.jpg");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    opacity: 0.5;
     @media screen and (min-width: 780px) {
-        background-image: url("../../../public/assets/tablet/bg-image-nighttime.jpg");
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("../../../public/assets/tablet/bg-image-nighttime.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 
     @media screen and (min-width: 1180px) {
-        background-image: url("../../../public/assets/desktop/bg-image-nighttime.jpg");
+        background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("../../../public/assets/desktop/bg-image-nighttime.jpg");
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 }
 
 .time {
-    margin-top: 300px;
+    margin-top: 150px;
     margin-left: 5%;
     height: auto;
     @media screen and (min-width: 780px) {
-        margin-top: 400px;
+        margin-top: 200px;
         margin-left: 7%;
     }
     @media screen and (min-width: 1180px) {
-        margin-top: 500px;
+        margin-top: 250px;
         margin-left: 10%;
     }
     .wrapper-time {
@@ -183,6 +202,7 @@
                     font-weight: 700;
                     line-height: 14px;
                     letter-spacing: 3.75px;
+                    margin: auto;
                     @media screen and (min-width: 780px) {
                         font-size: 16px;
                         line-height: 28px;
@@ -205,6 +225,8 @@
     margin-left: 0;
     width: 100%;
     z-index: 100;
+    margin-top: 30px;
+    padding-bottom: 4%;
     div {
         margin-top: 50px;
         margin-left: 5%;
@@ -218,7 +240,7 @@
         }
 
         .detailsInformation-categoryInfo {
-            font-style: $inter-font;
+            font-family: $inter-font;
             color: $black-color;
             font-size: 13px;
             font-weight: 400;
@@ -227,7 +249,7 @@
             margin-bottom: 5px;
         }
         .detailsInformation-nameInfo {
-            font-style: $inter-font;
+            font-family: $inter-font;
             color: $black-color;
             font-size: 40px;
             line-height: 48.41px;

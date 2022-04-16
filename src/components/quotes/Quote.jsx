@@ -6,6 +6,9 @@ import "./quote.scss";
 export const Quote = () => {
   const dispatch = useDispatch();
   const { quotes, success } = useSelector((state) => state.quotes);
+  const detailsInformationTimeAndHideQuote = useSelector(
+    (state) => state.toggleFlag.detailsInformationTimeAndHideQuote
+  );
   const [randomElementInQuotes, setRandomElementInQuotes] = useState(0);
 
   useEffect(() => {
@@ -15,7 +18,13 @@ export const Quote = () => {
   const selectQuote = () => {
     if (success) {
       return (
-        <div className="wrapper-quote">
+        <div
+          className={
+            detailsInformationTimeAndHideQuote
+              ? "wrapper-quote-none"
+              : "wrapper-quote"
+          }
+        >
           <div>
             <p>{quotes[randomElementInQuotes]["en"]}</p>
             <p>{quotes[randomElementInQuotes]["author"]}</p>
@@ -25,10 +34,7 @@ export const Quote = () => {
               onClick={() => randomQuote()}
               className="button-refresh__quote"
             >
-              <img
-                src={"../../../public/assets/desktop/icon-refresh.svg"}
-                alt="refresh"
-              />
+              <img src={"/assets/desktop/icon-refresh.svg"} alt="refresh" />
             </button>
           </div>
         </div>
